@@ -1,9 +1,11 @@
 import 'package:e_commerce/consts/consts.dart';
 import 'package:e_commerce/consts/lists.dart';
+import 'package:e_commerce/views/auth_screen/signup_screen.dart';
 import 'package:e_commerce/widgets%20common/applogo_widget.dart';
 import 'package:e_commerce/widgets%20common/bg_widget.dart';
 import 'package:e_commerce/widgets%20common/button_widget.dart';
 import 'package:e_commerce/widgets%20common/custom_textfield.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -51,17 +53,20 @@ class LoginScreen extends StatelessWidget {
                     textColor: whiteColor, 
                     onPress: (){}
                   ).box.width(context.screenWidth-60).make(),
-                  5.heightBox,
+                  7.heightBox,
                   createNewAccount.text.color(fontGrey).make(),
-                  5.heightBox,
+                  7.heightBox,
                   buttonWidget(
-                    title: singup,
+                    title: signup,
                     color: lightgolden, 
                     textColor: redColor, 
-                    onPress: (){}
+                    onPress: (){
+                      Get.to( ()=> SignUpScreen());
+                    }
                   ).box.width(context.screenWidth-60).make(),
                   10.heightBox,
                   loginWith.text.color(fontGrey).make(),
+                  5.heightBox,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
@@ -72,7 +77,7 @@ class LoginScreen extends StatelessWidget {
                           backgroundColor: lightGrey,
                           child: Image.asset(
                             socialIconList[index],
-                            width: 30,
+                            width: 35,
                             ),
                         ),
                       )
