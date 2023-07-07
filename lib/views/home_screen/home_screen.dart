@@ -7,8 +7,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    // init home controller 
+    // init home controller
     var controller = Get.put(HomeController());
 
     var navbarItems = [
@@ -31,20 +30,29 @@ class HomeScreen extends StatelessWidget {
     ];
 
     var navBody = [
-      Container(color: Colors.purple[50],),
-      Container(color: Colors.purple[200],),
-      Container(color: Colors.purple[400],),
-      Container(color: Colors.purple[600],),
+      Container(
+        color: Colors.purple[50],
+      ),
+      Container(
+        color: Colors.purple[200],
+      ),
+      Container(
+        color: Colors.purple[400],
+      ),
+      Container(
+        color: Colors.purple[600],
+      ),
     ];
 
     return Scaffold(
       body: Column(
         children: [
-          Obx(() => Expanded(child: navBody.elementAt(controller.currentNavIndex.value)))
+          Obx(() => Expanded(
+              child: navBody.elementAt(controller.currentNavIndex.value)))
         ],
       ),
-      bottomNavigationBar: Obx(() => 
-        BottomNavigationBar(
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
           currentIndex: controller.currentNavIndex.value,
           selectedItemColor: redColor,
           selectedLabelStyle: const TextStyle(fontFamily: semibold),
@@ -54,7 +62,7 @@ class HomeScreen extends StatelessWidget {
           onTap: (value) {
             controller.currentNavIndex.value = value;
           },
-          ),
+        ),
       ),
     );
   }
