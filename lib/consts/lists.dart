@@ -19,3 +19,24 @@ const secondSlidersList = [
   imgSs3,
   imgSs4,
 ];
+
+const featuredImages1 = [
+  imgS1,
+  imgS2,
+  imgS3,
+];
+const featuredImages2 = [
+  imgS4,
+  imgS5,
+  imgS6,
+];
+const featuredTitle1 = [
+  womenDress,
+  girlsDress,
+  girlsWatch,
+];
+const featuredTitle2 = [
+  boysGlasses,
+  mobilePhone,
+  tShirts,
+];
