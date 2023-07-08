@@ -1,7 +1,7 @@
 import 'package:e_commerce/consts/consts.dart';
 import 'package:e_commerce/consts/lists.dart';
 import 'package:e_commerce/views/auth_screen/signup_screen.dart';
-import 'package:e_commerce/views/home_screen/home_screen.dart';
+import 'package:e_commerce/views/home_screen/home.dart';
 import 'package:e_commerce/widgets%20common/applogo_widget.dart';
 import 'package:e_commerce/widgets%20common/bg_widget.dart';
 import 'package:e_commerce/widgets%20common/button_widget.dart';
@@ -50,7 +50,7 @@ class LoginScreen extends StatelessWidget {
                         color: redColor,
                         textColor: whiteColor,
                         onPress: () {
-                          Get.to( () => const HomeScreen());
+                          Get.to( () => const Home());
                         })
                     .box
                     .width(context.screenWidth - 60)
