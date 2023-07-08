@@ -23,6 +23,7 @@ class HomeScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 child: const TextField(
                   decoration: InputDecoration(
+                    border: InputBorder.none,
                       suffixIcon: Icon(Icons.search),
                       filled: true,
                       fillColor: whiteColor,
@@ -30,63 +31,90 @@ class HomeScreen extends StatelessWidget {
                       hintStyle: TextStyle(color: textfieldGrey)),
                 ),
               ),
-              8.heightBox,
+              10.heightBox,
               //swiper brands
-              VxSwiper.builder(
-                  aspectRatio: 16 / 9,
-                  autoPlay: true,
-                  height: 150,
-                  enlargeCenterPage: true,
-                  autoPlayAnimationDuration: const Duration(seconds: 1),
-                  itemCount: slidersList.length,
-                  itemBuilder: (context, index) {
-                    return Image.asset(
-                      slidersList[index],
-                      fit: BoxFit.fill,
-                    ).box.rounded.clip(Clip.antiAlias).margin(const EdgeInsets.symmetric(horizontal: 8)).make();
-                  }
+              Expanded(
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    children: [
+                      VxSwiper.builder(
+                          aspectRatio: 16 / 9,
+                          autoPlay: true,
+                          height: 150,
+                          enlargeCenterPage: true,
+                          autoPlayAnimationDuration: const Duration(seconds: 1),
+                          itemCount: slidersList.length,
+                          itemBuilder: (context, index) {
+                            return Image.asset(
+                              slidersList[index],
+                              fit: BoxFit.fill,
+                            ).box.rounded.clip(Clip.antiAlias).margin(const EdgeInsets.symmetric(horizontal: 8)).make();
+                          }
+                      ),
+                      10.heightBox,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: List.generate(2, (index) => homeButtons(
+                          height: context.screenHeight*0.15,
+                          width: context.screenWidth/2.5,
+                          icon: index == 0 ? icTodaysDeal : icFlashDeal,
+                          title: index == 0 ? todayDeal : flashSale,
+                        )),
+                      ),
+                      10.heightBox,
+                      VxSwiper.builder(
+                          aspectRatio: 16 / 9,
+                          autoPlay: true,
+                          height: 150,
+                          enlargeCenterPage: true,
+                          autoPlayAnimationDuration: const Duration(seconds: 1),
+                          itemCount: secondSlidersList.length,
+                          itemBuilder: (context, index) {
+                            return Image.asset(
+                              secondSlidersList[index],
+                              fit: BoxFit.fill,
+                            ).box.rounded.clip(Clip.antiAlias).margin(const EdgeInsets.symmetric(horizontal: 8)).make();
+                          }
+                      ),
+                      10.heightBox,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: List.generate(3, (index) => homeButtons(
+                          height: context.screenHeight*0.13,
+                          width: context.screenWidth/3.5,
+                          icon: index == 0 ? icTopCategories : index == 1 ? icBrands : icTopSeller,
+                          title: index == 0 ? topCategories : index == 1 ? brand : topSellers,
+                        )),
+                      ),
+                      10.heightBox,
+                
+                      //Featured Categories 
+                      Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: featuredCategories.text.fontFamily(semibold).color(darkFontGrey).size(18).make()),
+                      Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: featuredCategories.text.fontFamily(semibold).color(darkFontGrey).size(18).make()),
+                      Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: featuredCategories.text.fontFamily(semibold).color(darkFontGrey).size(18).make()),
+                      Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: featuredCategories.text.fontFamily(semibold).color(darkFontGrey).size(18).make()),
+                      Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: featuredCategories.text.fontFamily(semibold).color(darkFontGrey).size(18).make()),
+                      Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: featuredCategories.text.fontFamily(semibold).color(darkFontGrey).size(18).make()),
+                      Align(
+                        alignment: AlignmentDirectional.centerStart,
+                        child: featuredCategories.text.fontFamily(semibold).color(darkFontGrey).size(18).make()),
+                    ],
+                  ),
+                ),
               ),
-              10.heightBox,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List.generate(2, (index) => homeButtons(
-                  height: context.screenHeight*0.15,
-                  width: context.screenWidth/2.5,
-                  icon: index == 0 ? icTodaysDeal : icFlashDeal,
-                  title: index == 0 ? todayDeal : flashSale,
-                )),
-              ),
-              10.heightBox,
-              VxSwiper.builder(
-                  aspectRatio: 16 / 9,
-                  autoPlay: true,
-                  height: 150,
-                  enlargeCenterPage: true,
-                  autoPlayAnimationDuration: const Duration(seconds: 1),
-                  itemCount: secondSlidersList.length,
-                  itemBuilder: (context, index) {
-                    return Image.asset(
-                      secondSlidersList[index],
-                      fit: BoxFit.fill,
-                    ).box.rounded.clip(Clip.antiAlias).margin(const EdgeInsets.symmetric(horizontal: 8)).make();
-                  }
-              ),
-              10.heightBox,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List.generate(3, (index) => homeButtons(
-                  height: context.screenHeight*0.13,
-                  width: context.screenWidth/3.5,
-                  icon: index == 0 ? icTopCategories : index == 1 ? icBrands : icTopSeller,
-                  title: index == 0 ? topCategories : index == 1 ? brand : topSellers,
-                )),
-              ),
-              10.heightBox,
-
-              //Featured Categories 
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: featuredCategories.text.fontFamily(semibold).color(darkFontGrey).size(18).make()),
             ],
           ),
         ),
