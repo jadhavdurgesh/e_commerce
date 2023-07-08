@@ -263,9 +263,6 @@ class HomeScreen extends StatelessWidget {
                                       .make();
                         },
                       ),
-
-
-                      200.heightBox,
                     ],
                   ),
                 ),
