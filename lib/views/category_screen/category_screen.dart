@@ -1,4 +1,6 @@
+import 'package:e_commerce/views/category_screen/category_detail_screen.dart';
 import 'package:e_commerce/widgets%20common/bg_widget.dart';
+import 'package:get/get.dart';
 
 import '../../consts/consts.dart';
 import '../../consts/lists.dart';
@@ -35,9 +37,22 @@ class CategoryScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
                 10.heightBox,
-                categoriesList[index].text.align(TextAlign.center).color(fontGrey).make(),
+                categoriesList[index]
+                    .text
+                    .align(TextAlign.center)
+                    .color(fontGrey)
+                    .make(),
               ],
-            ).box.white.rounded.outerShadowSm.clip(Clip.antiAlias).make();
+            )
+                .box
+                .white
+                .rounded
+                .outerShadowSm
+                .clip(Clip.antiAlias)
+                .make()
+                .onTap(() {
+              Get.to(() => CategoryDetailScreen(title: categoriesList[index]));
+            });
           },
         ),
       ),
