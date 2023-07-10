@@ -10,6 +10,7 @@ const name = 'Name';
 const nameHint = "FLutter_xo7";
 const forgetPassword = "Forget Password";
 const login = "Log in";
+const logout = "Log out";
 const signup = "Sign up";
 const createNewAccount = "or, create a new account";
 const loginWith = "Log in with";
@@ -56,3 +57,6 @@ const video = "Video",
     returnpolicy = "Return Policy",
     supportpolicy = "Support Policy",
     productsmayyoulike = "Products may you like";
+
+// profile details strings 
+const orders = "My Orders", wishlist = "My Wishlist", messages = "Messages";
