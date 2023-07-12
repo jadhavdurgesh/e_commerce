@@ -1,5 +1,7 @@
 import 'package:e_commerce/consts/consts.dart';
+import 'package:e_commerce/views/home_screen/home.dart';
 import 'package:get/get.dart';
+import '../../controllers/auth_controllers.dart';
 import '../../widgets common/applogo_widget.dart';
 import '../../widgets common/bg_widget.dart';
 import '../../widgets common/button_widget.dart';
@@ -14,8 +16,13 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   bool? isCheck = false;
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  var controller = Get.put(AuthController());
+
+  // text controllers
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+  var confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +40,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Column(
               children: [
                 customTextField(
+                  isPass: false,
                   hintText: nameHint,
                   title: name,
+                  controller: nameController,
                 ),
                 customTextField(
+                  isPass: false,
                   hintText: emailHint,
                   title: 'Email',
                   controller: emailController,
@@ -45,10 +55,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hintText: passwordHint,
                   title: 'Password',
                   controller: passwordController,
+                  isPass: true,
                 ),
                 customTextField(
                   hintText: passwordHint,
                   title: confirmPassword,
+                  controller: confirmPasswordController,
+                  isPass: true,
                 ),
                 5.heightBox,
                 Row(
@@ -88,13 +101,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 5.heightBox,
                 buttonWidget(
-                        title: signup,
-                        color: isCheck == true ? redColor : lightGrey,
-                        textColor: whiteColor,
-                        onPress: () {})
-                    .box
-                    .width(context.screenWidth - 60)
-                    .make(),
+                    title: signup,
+                    color: isCheck == true ? redColor : lightGrey,
+                    textColor: whiteColor,
+                    onPress: () async {
+                      if (isCheck != false) {
+                        try {
+                          await controller.signupMehod(
+                              context: context,
+                              email: emailController.text,
+                              password: passwordController.text).then((value){
+                                return controller.storeUserData(
+                                  name: nameController.text,
+                                  email: emailController.text,
+                                  password: passwordController.text,
+                                );
+                              }).then((value){
+                                VxToast.show(context, msg: loggedin);
+                                Get.offAll(const Home());
+                              });
+                        } catch (e) {
+                          auth.signOut();
+                          VxToast.show(context, msg: e.toString());
+                        }
+                      }
+                    }).box.width(context.screenWidth - 60).make(),
                 10.heightBox,
                 // wrapping into gesture detector of velocity_x
                 Row(

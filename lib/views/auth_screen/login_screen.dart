@@ -30,11 +30,13 @@ class LoginScreen extends StatelessWidget {
             Column(
               children: [
                 customTextField(
+                  isPass: false,
                   hintText: emailHint,
                   title: 'Email',
                   controller: emailController,
                 ),
                 customTextField(
+                  isPass: true,
                   hintText: passwordHint,
                   title: 'Password',
                   controller: passwordController,
