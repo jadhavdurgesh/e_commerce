@@ -1,27 +1,37 @@
 import 'package:e_commerce/consts/lists.dart';
+import 'package:e_commerce/controllers/auth_controllers.dart';
+import 'package:e_commerce/views/auth_screen/login_screen.dart';
 import 'package:e_commerce/views/profile_screen/details_card.dart';
+import 'package:e_commerce/views/profile_screen/edit_profile_screen.dart';
 import 'package:e_commerce/widgets%20common/bg_widget.dart';
+import 'package:get/get.dart';
 
 import '../../consts/consts.dart';
+import '../../controllers/profile_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    var controller = Get.put(ProfileController());
+    
     return bgWidget(
         child: Scaffold(
             body: SafeArea(
       child: Column(children: [
         //edit profile
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal:8.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal:8.0),
           child: Align(
               alignment: Alignment.centerRight,
-              child: Icon(
+              child: const Icon(
                 Icons.edit,
                 color: whiteColor,
-              )),
+              ).onTap(() {
+                Get.to(()=> const EditProfileScreen());
+              })),
         ),
         //profile details
         Padding(
@@ -49,7 +59,10 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       shape: BeveledRectangleBorder(
                           borderRadius: BorderRadius.circular(4))),
-                  onPressed: () {},
+                  onPressed: () async {
+                    await Get.put(AuthController()).signoutMethod(context);
+                    Get.offAll(()=> const LoginScreen());
+                  },
                   child:
                       logout.text.fontFamily(semibold).white.makeCentered()),
             ],
