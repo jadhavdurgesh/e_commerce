@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       // usign getx to jump to next screen
       auth.authStateChanges().listen((User? user) {
         if(user == null && mounted){
-          Get.to(()=> LoginScreen());
+          Get.to(()=> const LoginScreen());
         }
         else{
           Get.to(()=> const Home());
