@@ -43,7 +43,7 @@ class ProfileScreen extends StatelessWidget {
                       Icons.edit,
                       color: whiteColor,
                     ).onTap(() {
-                      Get.to(() => const EditProfileScreen());
+                      Get.to(() => EditProfileScreen(data: data,));
                     })),
               ),
               //profile details
