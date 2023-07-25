@@ -30,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           );
         } else {
-          // docs == 0 because it is for single user 
+          // docs == 0 because it is for single user
           var data = snapshot.data!.docs[0];
           return SafeArea(
             child: Column(children: [
@@ -43,7 +43,11 @@ class ProfileScreen extends StatelessWidget {
                       Icons.edit,
                       color: whiteColor,
                     ).onTap(() {
-                      Get.to(() => EditProfileScreen(data: data,));
+                      controller.nameController.text = data['name'];
+                      controller.passwordController.text = data['password'];
+                      Get.to(() => EditProfileScreen(
+                            data: data,
+                          ));
                     })),
               ),
               //profile details
@@ -51,17 +55,27 @@ class ProfileScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Image.asset(
-                      imgProfile2,
-                      width: 100,
-                      fit: BoxFit.cover,
-                    ).box.roundedFull.clip(Clip.antiAlias).make(),
+                    data['imageUrl'] == ''
+                        ? Image.asset(
+                            imgProfile2,
+                            width: 100,
+                            fit: BoxFit.cover,
+                          ).box.roundedFull.clip(Clip.antiAlias).make()
+                        : Image.network(
+                            data['imageUrl'],
+                            width: 100,
+                            fit: BoxFit.cover,
+                          ).box.roundedFull.clip(Clip.antiAlias).make(),
                     10.widthBox,
                     Expanded(
                         child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        "${data['name']}".text.white.fontFamily(semibold).make(),
+                        "${data['name']}"
+                            .text
+                            .white
+                            .fontFamily(semibold)
+                            .make(),
                         "${data['email']}".text.white.make(),
                       ],
                     )),
@@ -84,7 +98,7 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              20.heightBox,
+              12.heightBox,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
